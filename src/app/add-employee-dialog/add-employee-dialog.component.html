@@ -1,55 +1,84 @@
 <h2 mat-dialog-title>Add New Employee</h2>
 <mat-dialog-content>
-  <form [formGroup]="employeeForm">
-    
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <!-- File Upload Field -->
+    <div class="file-upload-container">
+      <label for="imageUpload">Upload Image</label>
+      <input
+        id="imageUpload"
+        type="file"
+        (change)="onFileSelected($event)"
+        formControlName="imageUrl"
+        accept="image/*"
+      />
+    </div>
+    <div *ngIf="employeeForm.get('imageUrl')?.value">
+      <img
+        [src]="employeeForm.get('imageUrl')?.value"
+        alt="Employee Image"
+        class="image-preview"
+      />
+    </div>
+
+    <!-- First Name -->
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstName" />
-      <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">First name is required</mat-error>
     </mat-form-field>
 
+    <!-- Last Name -->
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Last Name</mat-label>
       <input matInput formControlName="lastName" />
-      <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">Last name is required</mat-error>
     </mat-form-field>
 
+    <!-- Email -->
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
-      <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">Email is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">Invalid email</mat-error>
+      <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">
+        Invalid email
+      </mat-error>
     </mat-form-field>
 
+    <!-- Salary -->
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Salary</mat-label>
       <input matInput formControlName="salary" />
-      <mat-error *ngIf="employeeForm.get('salary')?.hasError('required')">Salary is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('salary')?.hasError('pattern')">Invalid salary</mat-error>
     </mat-form-field>
+
+    <!-- Date of Birth -->
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
-      <input matInput [formControlName]="'dob'" [matDatepicker]="picker" placeholder="Date of Birth" />
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <input
+        matInput
+        [formControlName]="'dob'"
+        [matDatepicker]="picker"
+        placeholder="Date of Birth"
+      />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <!-- Contact Number -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>contact Number</mat-label>
+      <mat-label>Contact Number</mat-label>
       <input matInput formControlName="contactNumber" />
-      <mat-error *ngIf="employeeForm.get('contactNumber')?.hasError('required')">contactNumber is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('contactNumber')?.hasError('pattern')">Invalid contactNumber</mat-error>
+      <mat-error *ngIf="employeeForm.get('contactNumber')?.hasError('pattern')">
+        Invalid Contact Number
+      </mat-error>
     </mat-form-field>
+
+    <!-- Address -->
     <mat-form-field appearance="fill" class="form-field">
-      <mat-label>adress</mat-label>
+      <mat-label>Address</mat-label>
       <input matInput formControlName="address" />
-      <mat-error *ngIf="employeeForm.get('address')?.hasError('required')">adress is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('address')?.hasError('pattern')">Invalid adress</mat-error>
     </mat-form-field>
-    
+
+    <!-- Actions -->
+    <mat-dialog-actions>
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-dialog-actions>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()">Add</button>
-</mat-dialog-actions>

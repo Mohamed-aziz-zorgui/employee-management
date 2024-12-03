@@ -18,14 +18,28 @@ export class AddEmployeeDialogComponent {
     private snackBar: MatSnackBar
   ) {
     this.employeeForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      salary: ['', [Validators.required, Validators.min(0)]],
-      dob: ['', Validators.required],
-      contactNumber: ['', [Validators.required, Validators.pattern('^[+]?([0-9]*[ -]*)+$')]],
-      address: ['', Validators.required],
+      imageUrl: [''], // No validation
+      firstName: [''], // No validation
+      lastName: [''], // No validation
+      email: ['', [Validators.email]], // Optional but validated as email if provided
+      salary: [''], // No validation
+      dob: [''], // No validation
+      contactNumber: ['', [Validators.pattern('^[0-9]*$')]], // Optional but validated as numeric if provided
+      address: [''], // No validation
     });
+    
+  }
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      // Simulate image upload to a server or convert to a Base64 URL
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.employeeForm.patchValue({ imageUrl: reader.result }); // Store the image as a URL
+        this.employeeForm.get('imageUrl')?.updateValueAndValidity();
+      };
+      reader.readAsDataURL(file);
+    }
   }
   
 

@@ -47,7 +47,7 @@ export class EmployeeTableComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
       width: '400px',
     });
-
+  
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const newEmployee: Employee = { id: Math.floor(Math.random() * 1000), ...result };

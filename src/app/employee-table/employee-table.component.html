@@ -15,41 +15,36 @@
 
   <!-- Table -->
   <div class="table-wrapper mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <!-- Image Column -->
       <ng-container matColumnDef="imageUrl">
-        <th mat-header-cell *matHeaderCellDef> Image </th>
-        <td mat-cell *matCellDef="let employee">
-          <img
-            [src]="employee.imageUrl || 'https://via.placeholder.com/50'"
-            alt="Employee Image"
-            width="50"
-            height="50"
-          />
+        <th mat-header-cell *matHeaderCellDef > Image </th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.imageUrl" alt="Employee Image" style="width: 50px; height: 50px; border-radius: 50%;" />
         </td>
-      </ng-container>
+      </ng-container>>
     
       <!-- First Name Column -->
       <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
         <td mat-cell *matCellDef="let employee"> {{ employee.firstName || 'N/A' }} </td>
       </ng-container>
     
       <!-- Last Name Column -->
       <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
         <td mat-cell *matCellDef="let employee"> {{ employee.lastName || 'N/A' }} </td>
       </ng-container>
     
       <!-- Email Column -->
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
         <td mat-cell *matCellDef="let employee"> {{ employee.email || 'N/A' }} </td>
       </ng-container>
     
       <!-- Salary Column -->
       <ng-container matColumnDef="salary">
-        <th mat-header-cell *matHeaderCellDef> Salary </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
         <td mat-cell *matCellDef="let employee">
           {{ employee.salary != null ? employee.salary : 'N/A' }}
         </td>
@@ -57,7 +52,7 @@
     
       <!-- Date of Birth Column -->
       <ng-container matColumnDef="dob">
-        <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth </th>
         <td mat-cell *matCellDef="let employee">
           {{ employee.dob ? (employee.dob | date: 'shortDate') : 'N/A' }}
         </td>
@@ -65,13 +60,13 @@
     
       <!-- Contact Number Column -->
       <ng-container matColumnDef="contactNumber">
-        <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
         <td mat-cell *matCellDef="let employee"> {{ employee.contactNumber || 'N/A' }} </td>
       </ng-container>
     
       <!-- Address Column -->
       <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
         <td mat-cell *matCellDef="let employee"> {{ employee.address || 'N/A' }} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
