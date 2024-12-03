@@ -1,0 +1,77 @@
+table {
+  width: 100%; /* Ensure the table takes up available space */
+  border-collapse: collapse; /* Avoid double borders */
+}
+
+th, td {
+  text-align: left; /* Align text to the left for better readability */
+  padding: 8px; /* Add space around content */
+}
+
+th {
+  background-color: #f2f2f2; /* Light background for headers */
+}
+
+img {
+  border-radius: 50%; /* Optional: Make images circular */
+}
+
+mat-row, mat-header-row {
+  border-bottom: 1px solid #ddd; /* Add a border between rows */
+}
+
+mat-cell, mat-header-cell {
+  word-wrap: break-word; /* Prevent overflow and wrap text if necessary */
+}
+
+.mat-elevation-z8 {
+  box-shadow: none; /* Remove box shadow if not required */
+}
+
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.actions {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-start;  /* Aligner à gauche */
+
+}
+
+.filter-input {
+  width: 100%;
+  max-width: 400px;
+}
+
+.table-wrapper {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+}
+
+.mat-paginator {
+  margin-top: 20px;
+}
+.error-toast {
+  background-color: red !important;
+  color: white !important;
+  font-weight: bold;
+}
